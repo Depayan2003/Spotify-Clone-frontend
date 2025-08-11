@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: black;">
+    <div class="nav flex colour">
+        <div class="logo invert"><img src="logo.svg" alt=""></div>
+        <div class="home invert"> <img src="home.svg" alt=""></div>
+        <div class="initial">
+            <div class="search flex">
+                <div class="invert"><img src="search.svg" alt=""></div>
+                <input style="background-color: rgba(0, 0, 0, 0);" type="text">
+                <span style="font-size: 36px;color: rgba(233, 226, 226, 0.377);">|</span>
+                <div class="browse invert"> <img src="browse.svg" alt=""> </div>
+            </div>
+
+        </div>
+        <div class="non_initial flex">
+            <div class="premium">premium</div>
+            <div class="support">support</div>
+            <div class="download">download</div>
+            <div class="line">|</div>
+            <div class="install flex"><img src="install.svg" alt="" srcset=""><span>install app</span>
+            </div>
+            <div class="signup"> <span>sign up</span></div>
+            <button>log in</button>
+        </div>
+    </div>
+    <div class="container flex">
+        <div class="left backgroundColour" style="height: 75vh;">
+            <div class="cross flex">
+                <div></div><img src="cancel.svg" alt="">
+            </div>
+            <header class="flex header">
+                <div class="library colour" style="margin: 20px;">Your Library</div>
+                <div class="colour" style="margin: 20px;margin-left: 60%;box-shadow: 3px;">+</div>
+            </header>
+
+            <div class="up" style="overflow-y: scroll;height: 45%;">
+                <div class="content colour">
+                    <div style="font-size: 20px;">Create your first playlist</div>
+                    <div>It's easy,we will help you</div>
+                    <button>Create Playlist</button>
+                </div>
+                <div class="content colour">
+                    <div style="font-size: 20px;">Lets find some podcast to follow</div>
+                    <div>We will keep you updated on new episode</div>
+                    <button>Browse Podcasts</button>
+                </div>
+            </div>
+            <div class="down" style="height:30%;overflow-y: scroll;">
+                <div class="info flex">
+                    <div>Legal</div>
+                    <div>Safety & Privacy Center</div>
+                    <div>Privacy Policy</div>
+                    <div>Cookies</div>
+                </div>
+                <div class="info flex">
+                    <div>About Ads</div>
+                    <div>Accessibility</div>
+                </div>
+                <div class="info big colour">Cookies</div>
+                <button class="language flex"><img src="language.svg" alt="" class="invert">
+                    <div style="margin: 2px;">English</div>
+                </button>
+            </div>
+
+        </div>
+        <div class="right backgroundColour" style="overflow-y: scroll;">
+            <div id="new-song-detail-section" style="display: none; margin: 10px;" class="colour backgroundColour">
+                <div style="display: flex;">
+                    <div><button class="backButton" style="width: 100px;" onclick="goBack()">⬅ Back</button>
+                    </div>
+                    <img id="new-detail-cover" src="" alt="cover" />
+                </div>
+
+                <div style="display: flex; gap: 10px;justify-content: space-between;padding: 10px;">
+                    <h2 id="new-detail-title">
+                    </h2>
+                    <p id="new-detail-artist"></p>
+                    <p id="new-detail-duration"></p>
+                </div>
+                <button class="newplayButton" style="width: 100px;">Play</button>
+            </div>
+            <div class="artist-songs invert" style="display: none;">
+                <button class="invert" onclick="goBack()">⬅ Back</button>
+                <div class="current-artist">
+
+                </div>
+            </div>
+            <div class="all">
+                <div class="trendingSongs">
+                    <div class="hamburger"><img src="hamburger.svg" alt=""></div>
+                    <div class="trending flex colour">
+                        <h2>Trending songs</h2>
+                        <div>Show all</div>
+                    </div>
+
+                    <div class="main flex" id="songListSection">
+                        <div class="songs card" id="0" onclick="showSongDetails(`Saiyaara (From 'Saiyaara')`)"><img aria-hidden="false"
+                                draggable="false" loading="lazy"
+                                src="https://i.scdn.co/image/ab67616d00001e02a7e251b543c77a6ed356dfbe"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="title">Saiyaara(From "Saiyaara")</div>
+                            <div class="artist">Tanishk Bagchi,Faheem Abdullah,Arslan Nizami</div>
+                        </div>
+                        <div class="songs card" id="1" onclick="showSongDetails(`Dhun (From 'Saiyaara')`)"><img aria-hidden="false"
+                                draggable="false" loading="lazy"
+                                src="https://i.scdn.co/image/ab67616d00001e02781faf59a3cb980fe3b493f8"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="title">Dhun (From "Saiyaara")</div>
+                            <div class="artist">Mithoon, Arijit Singh</div>
+                        </div>
+                        <div class="songs card" id="2" onclick="showSongDetails(`Tum Ho Toh (From 'Saiyaara')`)"><img aria-hidden="false"
+                                draggable="false" loading="lazy"
+                                src="https://i.scdn.co/image/ab67616d00001e02d998c880f085f08c7ddeeafc"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="title">Tum Ho Toh (From "Saiyaara")</div>
+                            <div class="artist">Vishal Mishra, Hansika Pareek, Raj Shekhar</div>
+                        </div>
+                        <div class="songs card" id="3" onclick="showSongDetails(`Barbaad (From 'Saiyaara')`)"><img aria-hidden="false"
+                                draggable="false" loading="lazy"
+                                src="https://i.scdn.co/image/ab67616d00001e02148a06ae24e68c088d8d2954"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="title">Barbaad (From "Saiyaara")</div>
+                            <div class="artist">The Rish, Jubin Nautiyal</div>
+                        </div>
+                        <div class="songs card" id="4" onclick="showSongDetails(`Humsafar (From 'Saiyaara')`)"><img aria-hidden="false"
+                                draggable="false" loading="lazy"
+                                src="https://i.scdn.co/image/ab67616d00001e02dfc5ea836092ec71ca7a5dcb"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="title">Humsafar (From "Saiyaara")</div>
+                            <div class="artist">Sachet-Parampara, Sachet Tandon,...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popular-artists-section">
+                    <h2>Popular artists</h2>
+                    <div class="artist-list">
+                        <div class="artist-card card">
+                            <img aria-hidden="false" draggable="false" loading="lazy"
+                                src="https://i.scdn.co/image/ab67616100005174cb6926f44f620555ba444fca"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 MxmW8QkHqHWtuhO589PV yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="artist-name">Pritam</div>
+                        </div>
+                        <div class="artist-card card">
+                            <img aria-hidden="false" draggable="false" loading="lazy"
+                                src="https://i.scdn.co/image/ab67616100005174b19af0ea736c6228d6eb539c"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 MxmW8QkHqHWtuhO589PV yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="artist-name">A.R. Rahman</div>
+                        </div>
+                        <div class="artist-card card">
+                            <img aria-hidden="false" draggable="false" loading="lazy"
+                                src="https://a10.gaanacdn.com/gn_img/artists/Dk9KNk23Bx/k9KNqJJbBx/size_m_1739172212.jpg"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 MxmW8QkHqHWtuhO589PV yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="artist-name">Arijit Singh</div>
+                        </div>
+                        <div class="artist-card card">
+                            <img aria-hidden="false" draggable="false" loading="lazy"
+                                src="https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 MxmW8QkHqHWtuhO589PV yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="artist-name">Eminem</div>
+                        </div>
+                        <div class="artist-card card">
+                            <img aria-hidden="false" draggable="false" loading="lazy"
+                                src="honey-singh.jpg"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 MxmW8QkHqHWtuhO589PV yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="artist-name">Honey Singh</div>
+                        </div>
+                        <div class="artist-card card">
+                            <img aria-hidden="false" draggable="false" loading="lazy"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnXHrWvaE1ubq_Da_ZSgrzsyO7rxg9cszPIQ&s"
+                                data-testid="card-image" alt=""
+                                class="mMx2LUixlnN_Fu45JpFB yMQTWVwLJ5bV8VGiaqU3 MxmW8QkHqHWtuhO589PV yOKoknIYYzAE90pe7_SE Yn2Ei5QZn19gria6LjZj">
+                            <div class="artist-name">Shreya Ghoshal</div>
+                        </div>
+                        <!-- Add more artist-cards as needed -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="playbar colour">
+                <div class="songbuttons flex" style="position: relative;">
+                    <div id="songDetails" style="height: fit-content;"></div>
+                    <div class="control flex"><img id="previous" src="previous.svg" alt="" style="filter: invert();">
+                        <img id="play" src="youtube-stroke-rounded.svg" alt="" style="filter: invert();">
+                        <img id="next" src="next.svg" alt="" style="filter: invert();">
+                    </div>
+
+                    <div style="display: flex; gap: 15px;">
+                        <div style="margin-top: 3px;" id="duration"></div><img class="volume" src="volume.svg" alt="">
+                        <input class="range" style="filter: invert();" type="range">
+                    </div>
+                </div>
+
+                <div class="seekbar">
+                    <div class="point"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">MADE BY DEPAYAN THE BOSS</div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
