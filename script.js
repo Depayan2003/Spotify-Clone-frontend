@@ -13,20 +13,18 @@ function formatTime(seconds) {
 
 async function getSongs(folder) {
   Songs = [];
-  let a = await fetch(`${window.location.origin}/${folder}/`);
-  let response = await a.text();
+  try {
+    // Fetch the JSON file listing the songs
+    let res = await fetch(`${folder}/songs.json`);
+    if (!res.ok) throw new Error(`Failed to load song list for ${folder}`);
+    
+    let songFiles = await res.json();
 
-  let div = document.createElement("div");
-  div.innerHTML = response;
+    // Map file names to full paths
+    Songs = songFiles.map(file => `/${folder}/${file}`);
 
-  let as = div.getElementsByTagName("a");
-
-  for (let index = 0; index < as.length; index++) {
-    const element = as[index];
-    if (element.href.endsWith(".mp3")) {
-      console.log(element);
-      Songs.push(element.getAttribute("href"));
-    }
+  } catch (error) {
+    console.error("Error fetching songs:", error);
   }
   return Songs;
 }
@@ -82,7 +80,7 @@ const playMusic = async (songKey) => {
   }
 
   let song = Songs[songKey];
-  let element = decodeURIComponent(song.split("\\").pop());
+  let element = decodeURIComponent(song.split("/").pop());
   element = element.replace(".mp3", "");
   document.getElementById("songDetails").innerHTML = element;
   document.getElementById("duration").innerHTML = `00:00/` + formatTime(currentSong.duration);
@@ -132,9 +130,9 @@ function showSongDetails(songName) {
   document.getElementById("new-detail-artist").innerText = song.artist;
   document.getElementById("new-detail-duration").innerText = song.duration;
 
-  document.querySelector(".newplayButton").onclick = async () => {
-  await load("songs");
-  const songUrl = `\\songs\\${song.title}`;
+document.querySelector(".newplayButton").onclick = async () => {
+  await load("TrendingSongs");
+  const songUrl = `/TrendingSongs/${song.title}`;
   const songKey = Songs.indexOf(songUrl);
   if (songKey !== -1) {
     playMusic(songKey);
@@ -143,6 +141,7 @@ function showSongDetails(songName) {
     console.log("Available Songs:", Songs);
   }
 };
+
 
 }
 
@@ -160,7 +159,10 @@ document.querySelector(".cross").addEventListener("click", () => {
 });
 
 document.getElementById("previous").addEventListener("click", () => {
-  let index = Songs.indexOf(currentSong.src.replace(window.location.origin, ""));
+  const currentPath = new URL(currentSong.src).pathname;
+
+  let index = Songs.indexOf(decodeURIComponent(currentPath));
+  
   if (index > 0) {
     playMusic(index - 1);
   } else {
@@ -168,8 +170,12 @@ document.getElementById("previous").addEventListener("click", () => {
   }
 });
 
+
 document.getElementById("next").addEventListener("click", () => {
-  let index = Songs.indexOf(currentSong.src.replace(window.location.origin, ""));
+    const currentPath = new URL(currentSong.src).pathname;
+  
+  let index = Songs.indexOf(decodeURIComponent(currentPath));
+
   if (index < Songs.length - 1) {
     playMusic(index + 1);
   } else {
@@ -183,7 +189,7 @@ document.querySelectorAll(".artist-card").forEach(card => {
     let name = card.querySelector(".artist-name").textContent.trim();
     await load(name);
     for (let index = 0; index < Songs.length; index++) {
-      let element = decodeURIComponent(Songs[index].split("\\").pop());
+      let element = decodeURIComponent(Songs[index].split("/").pop());
       element = element.replace(".mp3", "");
       const div1 = document.createElement("div");
       const div2 = document.createElement("div");
